@@ -11,12 +11,13 @@ export default function Home() {
   ])
 
   const [newComment, setNewComment] = useState("")
+  const [userName, setUserName] = useState("")
 
   const addComment = () => {
-    if (newComment.trim()) {
+    if (newComment.trim() && userName.trim()) {
       setComments(prev => [
         ...prev,
-        { id: Date.now(), content: newComment.trim(), user: "Anonymous" }
+        { id: Date.now(), content: newComment.trim(), user: userName.trim() }
       ])
       setNewComment("")
     }
@@ -42,21 +43,30 @@ export default function Home() {
           ))}
         </div>
 
-        {/* New Comment Input */}
-        <div className="flex items-center space-x-2 pt-2 border-t border-gray-300 dark:border-gray-700">
+        {/* Input Fields */}
+        <div className="space-y-3 border-t pt-6 border-gray-300 dark:border-gray-700">
           <input
             type="text"
-            placeholder="Write a comment..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm dark:text-white outline-none"
+            placeholder="Your name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm dark:text-white outline-none"
           />
-          <button
-            onClick={addComment}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Post
-          </button>
+          <div className="flex items-center space-x-2">
+            <input
+              type="text"
+              placeholder="Write a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm dark:text-white outline-none"
+            />
+            <button
+              onClick={addComment}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              Post
+            </button>
+          </div>
         </div>
       </div>
     </div>
