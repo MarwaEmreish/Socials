@@ -1,14 +1,33 @@
+import { useState } from "react";
+
+type CommentCardProps = {
+  content: string;
+  user: string;
+  likedInitial?: boolean;
+};
+
 export default function CommentCard({
   content,
   user,
-}: {
-  content: string;
-  user: string;
-}) {
+  likedInitial = false,
+}: CommentCardProps) {
+  const [liked, setLiked] = useState(likedInitial);
+
   return (
-    <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white p-4 rounded-xl shadow mb-4">
-      <p className="text-base">{content}</p>
-      <span className="text-xs text-gray-500">— {user}</span>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md max-w-xl mx-auto mb-4">
+      <p className="text-gray-900 dark:text-gray-100 mb-2">{content}</p>
+      <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+        <span>- {user}</span>
+        <button
+          onClick={() => setLiked(!liked)}
+          className={`px-3 py-1 rounded-full text-white ${
+            liked ? "bg-red-500" : "bg-gray-400 dark:bg-gray-600"
+          } transition-colors duration-200`}
+          aria-label={liked ? "Unlike comment" : "Like comment"}
+        >
+          {liked ? "❤️ Liked" : "♡ Like"}
+        </button>
+      </div>
     </div>
   );
 }

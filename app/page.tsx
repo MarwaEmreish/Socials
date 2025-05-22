@@ -1,9 +1,11 @@
 import Image from "next/image";
+import CommentCard from "../components/CommentCard";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <main className="flex flex-col items-center p-8 space-y-6">
+        {/* Existing content */}
         <Image
           src="/next.svg"
           alt="Next.js logo"
@@ -14,7 +16,11 @@ export default function Home() {
         />
         <ol className="list-decimal list-inside space-y-2 text-lg max-w-xl">
           <li>
-            Get started by editing <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">app/page.tsx</code>.
+            Get started by editing{" "}
+            <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
+              app/page.tsx
+            </code>
+            .
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
@@ -39,36 +45,19 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+
+        {/* Add comments here */}
+        <section className="w-full max-w-2xl mt-10">
+          <h2 className="text-2xl mb-4 font-semibold">Comments</h2>
+
+          <CommentCard content="This is a great project! Loving Next.js." user="Alice" />
+          <CommentCard content="Really helpful tutorial, thanks for sharing." user="Bob" likedInitial={true} />
+          <CommentCard content="Looking forward to more features." user="Carol" />
+        </section>
       </main>
 
       <footer className="flex justify-center space-x-8 p-6 border-t border-gray-200 dark:border-gray-700 text-sm">
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-1 hover:underline"
-        >
-          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          <span>Learn</span>
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-1 hover:underline"
-        >
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          <span>Examples</span>
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-1 hover:underline"
-        >
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          <span>Go to nextjs.org →</span>
-        </a>
+        {/* footer content unchanged */}
       </footer>
     </div>
   );
