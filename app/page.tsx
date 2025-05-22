@@ -23,24 +23,27 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 py-12">
-      <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 space-y-6">
-        <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-2">
-          💬 Comments
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 py-10">
+      <div className="w-full max-w-3xl bg-[#fdf3e7] dark:bg-gray-800 rounded-3xl shadow-2xl px-8 py-10 space-y-8">
+        
+        {/* App Header */}
+        <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-white">
+          📝 Comment App
         </h1>
-        <p className="text-center text-gray-500 dark:text-gray-400 text-sm mb-4">
-          Share your thoughts below
+
+        <p className="text-center text-gray-600 dark:text-gray-300 text-sm">
+          A beginner-friendly place to share your thoughts.
         </p>
 
-        {/* Comments Section */}
+        {/* Comments List */}
         <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
           {comments.map(comment => (
             <CommentCard key={comment.id} content={comment.content} user={comment.user} />
           ))}
         </div>
 
-        {/* Add New Comment */}
-        <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+        {/* New Comment Input */}
+        <div className="flex items-center space-x-2 pt-2 border-t border-gray-300 dark:border-gray-700">
           <input
             type="text"
             placeholder="Write a comment..."
