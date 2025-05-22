@@ -1,64 +1,61 @@
-import Image from "next/image";
-import CommentCard from "../components/CommentCard";
+'use client'
+
+import CommentCard from "../components/CommentCard"
+import { useState } from "react"
 
 export default function Home() {
+  const [comments, setComments] = useState([
+    { id: 1, content: "This is a great project! Loving Next.js.", user: "Alice" },
+    { id: 2, content: "Really helpful tutorial, thanks for sharing.", user: "Bob" },
+    { id: 3, content: "Looking forward to more features.", user: "Carol" }
+  ])
+
+  const [newComment, setNewComment] = useState("")
+
+  const addComment = () => {
+    if (newComment.trim()) {
+      setComments(prev => [
+        ...prev,
+        { id: Date.now(), content: newComment.trim(), user: "Anonymous" }
+      ])
+      setNewComment("")
+    }
+  }
+
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <main className="flex flex-col items-center p-8 space-y-6">
-        {/* Existing content */}
-        <Image
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-          className="dark:invert"
-        />
-        <ol className="list-decimal list-inside space-y-2 text-lg max-w-xl">
-          <li>
-            Get started by editing{" "}
-            <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 py-12">
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 space-y-6">
+        <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-2">
+          💬 Comments
+        </h1>
+        <p className="text-center text-gray-500 dark:text-gray-400 text-sm mb-4">
+          Share your thoughts below
+        </p>
 
-        <div className="flex space-x-4">
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-          >
-            <Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
-            <span>Deploy now</span>
-          </a>
-
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-          >
-            Read our docs
-          </a>
+        {/* Comments Section */}
+        <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+          {comments.map(comment => (
+            <CommentCard key={comment.id} content={comment.content} user={comment.user} />
+          ))}
         </div>
 
-        {/* Add comments here */}
-        <section className="w-full max-w-2xl mt-10">
-          <h2 className="text-2xl mb-4 font-semibold">Comments</h2>
-
-          <CommentCard content="This is a great project! Loving Next.js." user="Alice" />
-          <CommentCard content="Really helpful tutorial, thanks for sharing." user="Bob" likedInitial={true} />
-          <CommentCard content="Looking forward to more features." user="Carol" />
-        </section>
-      </main>
-
-      <footer className="flex justify-center space-x-8 p-6 border-t border-gray-200 dark:border-gray-700 text-sm">
-        {/* footer content unchanged */}
-      </footer>
+        {/* Add New Comment */}
+        <div className="flex items-center space-x-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+          <input
+            type="text"
+            placeholder="Write a comment..."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm dark:text-white outline-none"
+          />
+          <button
+            onClick={addComment}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Post
+          </button>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

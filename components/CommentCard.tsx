@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 type CommentCardProps = {
@@ -6,17 +8,13 @@ type CommentCardProps = {
   likedInitial?: boolean;
 };
 
-export default function CommentCard({
-  content,
-  user,
-  likedInitial = false,
-}: CommentCardProps) {
+export default function CommentCard({ content, user, likedInitial = false }: CommentCardProps) {
   const [liked, setLiked] = useState(likedInitial);
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md max-w-xl mx-auto mb-4">
+    <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm">
       <p className="text-gray-900 dark:text-gray-100 mb-2">{content}</p>
-      <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-300">
         <span>- {user}</span>
         <button
           onClick={() => setLiked(!liked)}
