@@ -28,8 +28,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f9f5f2] to-[#f0eae6] flex items-center justify-center p-4">
-      <div className="w-full max-w-xl bg-[#fffaf7] rounded-2xl shadow-lg border border-[#e8ddd2] px-6 py-8 sm:px-8 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-[#f9f5f2] to-[#f0eae6] flex items-center justify-center px-4 sm:px-6 md:px-10 py-10">
+
+      <div className="bg-[#fffaf7] border border-[#e8ddd2] rounded-2xl shadow-lg w-full max-w-xl mx-6 my-10 px-6 py-8 sm:px-10 space-y-6">
 
         {/* Header */}
         <div className="text-center space-y-1">
